@@ -9,6 +9,8 @@ export class LoginApi {
 
   public async login(email: any) {
     const result = await User.findOne({ where: { email }, raw: true });
+    console.log(result);
+
     if (result === null) throw new Error("null");
     return result;
   }

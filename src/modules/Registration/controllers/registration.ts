@@ -9,17 +9,9 @@ const db: DatabaseApi = new DatabaseApi();
 
 export const registration = async (req: Request, res: Response) => {
   try {
-    const {
-      email,
-      password,
-      firstName,
-      surname,
-      lastName,
-      inviteLink,
-      passportData,
-      phone,
-      balance,
-    } = <IDataReg>req.body;
+    const { email, password, name, surname, lastName, inviteLink, sex, phone } =
+      <IDataReg>req.body;
+    console.log(req.body);
 
     const hashPassword = await bcryptjs.hash(password, 10);
     const myInviteLink = await createLink(email);
@@ -27,15 +19,15 @@ export const registration = async (req: Request, res: Response) => {
 
     const param = {
       leaderId: parseLeader,
-      firstName,
+      firstName: name,
       surname,
       lastName,
       email,
       phone,
       password: hashPassword,
-      myInviteLink,
-      passportData,
-      balance,
+      myInviteLink: myInviteLink,
+      sex,
+      balance: 0,
     };
 
     await db.registration.create(param);
@@ -51,16 +43,16 @@ export const registration = async (req: Request, res: Response) => {
 };
 
 const createLink = async (email: string) => {
-  const parseEmail = crypto.AES.encrypt(
-    JSON.stringify(email),
-    config.security.SECRET!
-  ).toString();
+  const parseEmail = encodeURIComponent(
+    crypto.AES.encrypt(email, config.security.SECRET!).toString()
+  );
   return parseEmail;
 };
 
 const parseLink = async (link: string) => {
-  const bytes = crypto.AES.decrypt(link, config.security.SECRET!);
-  const leader = JSON.parse(bytes.toString(crypto.enc.Utf8));
+  const decode = decodeURIComponent(link);
+  const bytes = crypto.AES.decrypt(decode, config.security.SECRET!);
+  const leader = bytes.toString(crypto.enc.Utf8);
 
   return leader;
 };

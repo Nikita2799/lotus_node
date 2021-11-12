@@ -10,7 +10,7 @@ export const Img = connection.define(
       primaryKey: true,
       allowNull: false,
     },
-    prodcutId: {
+    productId: {
       type: DataTypes.INTEGER,
       unique: false,
       allowNull: false,

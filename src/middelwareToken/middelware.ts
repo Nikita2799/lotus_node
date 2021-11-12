@@ -10,12 +10,10 @@ export const middelwareToken = (
   if (req.method === "OPTIONS") return next();
   try {
     let token = undefined;
-
+    console.log(req.headers, "auth-token");
     if (req.headers["x-access-token"]) {
       token = req.headers["x-access-token"].toString();
     }
-
-    console.log(token, "auth-token");
 
     if (!token) return res.status(401).json({ message: "non auth" });
 

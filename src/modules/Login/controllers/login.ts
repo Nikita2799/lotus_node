@@ -20,7 +20,7 @@ export const login = async (req: Request, res: Response) => {
     const token = await createToken(user.id);
 
     res.status(200).json({ token });
-  } catch (err) {
+  } catch (err: any) {
     console.log(err);
     if (err.message === "null")
       return res.status(422).json({ message: "user not found" });

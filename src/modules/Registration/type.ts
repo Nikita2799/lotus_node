@@ -3,10 +3,11 @@ export interface IDataReg {
   password: string;
   passportData: string;
   phone: string;
-  firstName: string;
+  name: string;
   surname: string;
   lastName: string;
   allInvitePeople: string;
   inviteLink: string;
   balance: string | number;
+  sex: string;
 }

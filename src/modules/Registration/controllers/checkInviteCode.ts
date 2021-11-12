@@ -10,9 +10,9 @@ export const checkInviteCode = async (req: Request, res: Response) => {
 
     await db.registration.check(code);
     res.status(200).json("OK");
-  } catch (err) {
+  } catch (err: any) {
     console.log(err);
-    if (err === "null")
+    if (err.message === "null")
       return res.status(422).json({ message: "incorect invite code" });
     res.status(500).json({ message: "server error" });
   }

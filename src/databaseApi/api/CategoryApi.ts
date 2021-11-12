@@ -21,14 +21,17 @@ export class CategoryApi {
   }
 
   async getCategory() {
-    const answer = await SubCat.findAll();
+    const answer = await Category.findAll({ attributes: ["name", "id"] });
     if (!answer) throw new Error("cat err");
 
     return answer;
   }
 
   async getSubCategoryByCat(idCat: any) {
-    const answer = await SubCat.findAll({ where: { categoryId: idCat } });
+    const answer = await SubCat.findAll({
+      where: { categoryId: idCat },
+      attributes: ["name", "id"],
+    });
     if (!answer) throw new Error("cat err");
 
     return answer;
