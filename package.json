@@ -1,0 +1,57 @@
+{
+  "name": "lotos-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node server.ts",
+    "watch": "nodemon -L",
+    "start:prod": "pm2 start ./dist/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "express": "^4.17.1",
+    "kill-port": "^1.6.1",
+    "ts-node": "^10.1.0",
+    "tslint": "^6.1.3",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/cors": "^2.8.12",
+    "@types/crypto-js": "^4.0.2",
+    "@types/jsonwebtoken": "^8.5.4",
+    "@types/multer": "^1.4.7",
+    "@types/mysql": "^2.15.19",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.1.1",
+    "dotenv": "^10.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.3",
+    "mysql2": "^2.3.0",
+    "nodemon": "^2.0.12",
+    "sequelize": "^6.6.5"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      ".git",
+      "node_modules",
+      "dist"
+    ],
+    "watch": [
+      "."
+    ],
+    "events": {
+      "restart": "kill-port 8036",
+      "crash": "kill-port 8036"
+    },
+    "exec": "npm start",
+    "ext": "ts",
+    "delay": "1500"
+  }
+}

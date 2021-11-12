@@ -1,0 +1,36 @@
+import mysql from "mysql";
+import config from "../../../config/config";
+import jwt from "jsonwebtoken";
+import { Sequelize } from "sequelize/types";
+import { User } from "../model/User";
+import { IOrder } from "../../modules/Order/type";
+import { Order } from "../model/Order";
+import { ProductRouter } from "../../modules/Product/router";
+import { ProductOrder } from "../model/ProductOrder";
+
+export class OrderApi {
+  constructor(private readonly connection: Sequelize) {}
+
+  public async addOrder(order: IOrder) {
+    const result = await Order.create({
+      typePost: order.typePost,
+      fullName: order.fullName,
+      city: order.city,
+      numberPost: order.numberPost,
+      phone: order.phone,
+      typePay: order.typePay,
+      status: 0,
+    });
+
+    for (let i = 0; i < order.productList.length; i++) {
+      await ProductOrder.create({
+        orderId: result.getDataValue("id"),
+        productId: order.productList[i].idProduct,
+        count: order.productList[i].count,
+      });
+    }
+
+    if (result === null) throw new Error("null");
+    return "success";
+  }
+}
