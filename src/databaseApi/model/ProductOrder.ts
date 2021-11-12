@@ -24,7 +24,7 @@ export const ProductOrder = connection.define(
     },
 
     createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
+    updateAt: DataTypes.DATE,
   },
   {
     modelName: "ProductOrder",

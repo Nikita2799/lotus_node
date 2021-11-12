@@ -21,7 +21,7 @@ export const Img = connection.define(
       allowNull: false,
     },
     createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
+    updateAt: DataTypes.DATE,
   },
   {
     modelName: "Img",

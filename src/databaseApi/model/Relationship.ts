@@ -31,6 +31,8 @@ export const Relationship = connection.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
+    createdAt: DataTypes.DATE,
+    updateAt: DataTypes.DATE,
   },
   {
     modelName: "Relationship",

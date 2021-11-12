@@ -21,7 +21,7 @@ export const SubCat = connection.define(
     },
 
     createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
+    updateAt: DataTypes.DATE,
   },
   {
     modelName: "SubCat",
