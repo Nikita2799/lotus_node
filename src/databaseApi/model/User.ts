@@ -56,8 +56,6 @@ export const User = connection.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    createdAt: { type: DataTypes.DATE },
-    updateAt: { type: DataTypes.DATE },
   },
   {
     modelName: "User",
