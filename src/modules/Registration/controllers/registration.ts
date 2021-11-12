@@ -24,6 +24,7 @@ export const registration = async (req: Request, res: Response) => {
       lastName,
       email,
       phone,
+      passportData: "",
       password: hashPassword,
       myInviteLink: myInviteLink,
       sex,
