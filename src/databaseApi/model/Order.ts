@@ -43,8 +43,8 @@ export const Order = connection.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    createdAt: DataTypes.DATE,
-    updateAt: DataTypes.DATE,
+    createdAt: { type: DataTypes.DATE },
+    updateAt: { type: DataTypes.DATE },
   },
   {
     modelName: "Order",

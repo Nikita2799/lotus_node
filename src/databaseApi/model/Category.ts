@@ -16,8 +16,8 @@ export const Category = connection.define(
       allowNull: false,
     },
 
-    createdAt: DataTypes.DATE,
-    updateAt: DataTypes.DATE,
+    createdAt: { type: DataTypes.DATE },
+    updateAt: { type: DataTypes.DATE },
   },
   {
     modelName: "Category",

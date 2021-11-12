@@ -48,8 +48,8 @@ export const Product = connection.define(
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    createdAt: DataTypes.DATE,
-    updateAt: DataTypes.DATE,
+    createdAt: { type: DataTypes.DATE },
+    updateAt: { type: DataTypes.DATE },
   },
   {
     modelName: "Product",
