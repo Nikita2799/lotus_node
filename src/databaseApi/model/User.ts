@@ -40,10 +40,6 @@ export const User = connection.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    allInvitePeople: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
     myInviteLink: {
       type: DataTypes.STRING,
       allowNull: false,
