@@ -1,8 +1,9 @@
 import { Sequelize, DataTypes } from "sequelize";
 import { connection } from "../databsae_connection";
+import { Product } from "./Product";
 
 export const Img = connection.define(
-  "imgProduct",
+  "imgProducts",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -20,11 +21,11 @@ export const Img = connection.define(
       unique: false,
       allowNull: false,
     },
-    createdAt: DataTypes.DATE,
-    updateAt: DataTypes.DATE,
+    createdAt: { type: DataTypes.DATE },
+    updateAt: { type: DataTypes.DATE },
   },
   {
-    modelName: "Img",
+    modelName: "Product",
   }
 );
 

@@ -3,9 +3,11 @@ import { DatabaseApi } from "../../../databaseApi/DatabaseApi";
 
 const db: DatabaseApi = new DatabaseApi();
 
-export const postCategory = async (req: Request, res: Response) => {
+export const getByCategory = async (req: Request, res: Response) => {
   try {
-    const products = await db.category.addCategory(req.body);
+    const { category } = req.params;
+
+    const products = await db.product.getCategory(parseInt(category));
 
     res.status(200).json(products);
   } catch (err) {

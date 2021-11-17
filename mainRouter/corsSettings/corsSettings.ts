@@ -10,6 +10,7 @@ const options: cors.CorsOptions = {
     "X-Access-Token",
   ],
   credentials: true,
+
   methods: "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE",
   preflightContinue: false,
 };

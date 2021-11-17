@@ -1,5 +1,6 @@
 import { Sequelize, DataTypes } from "sequelize";
 import { connection } from "../databsae_connection";
+import { Img } from "./Img";
 
 export const Product = connection.define(
   "products",

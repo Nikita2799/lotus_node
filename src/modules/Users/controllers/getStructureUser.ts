@@ -5,14 +5,17 @@ const db: DatabaseApi = new DatabaseApi();
 
 export const getStructureUser = async (req: Request, res: Response) => {
   try {
-    //const id = req.user.userId;
-    const user: any = await db.user.get(13);
+    const idUser = req.user.userId;
 
-    const myPeople = db.user.getMyPeople(user.email);
+    const { id } = req.params;
 
-    console.log(myPeople);
+    const user = await db.user.get(id === "0" ? idUser : id);
+
+    const myPeople = await db.user.getMyPeople(user[0]?.getDataValue("email"));
+
+    res.status(200).json(myPeople);
   } catch (err) {
     console.log(err);
-    res.status(500).json({ message: "server error" });
+    res.status(422).json({ message: "server error" });
   }
 };

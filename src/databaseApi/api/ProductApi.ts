@@ -1,8 +1,9 @@
 import { raw } from "body-parser";
-import { Sequelize } from "sequelize";
+import { QueryTypes, Sequelize } from "sequelize";
 import { IProduct } from "../../modules/Product/type";
 import { Img } from "../model/Img";
 import { Product } from "../model/Product";
+import { User } from "../model/User";
 
 export class ProductApi {
   constructor(private readonly connection: Sequelize) {}
@@ -22,47 +23,71 @@ export class ProductApi {
     return productAnswer;
   }
 
-  async getAllProducts() {
-    const productAnswer = await Product.findAll({
-      include: [
+  async getAllProductsArray(products: Array<any>) {
+    let sortProduct = [];
+    for (let i = 0; i < products.length; i++) {
+      const productAnswer: any = await Product.sequelize?.query(
+        `SELECT price,discount,name FROM products as p INNER JOIN imgProducts ON p.id=imgProducts.productId WHERE p.id = ${products[i]}`,
         {
-          model: Img,
-          where: { productId: Sequelize.col("products.id") },
-        },
-      ],
-    });
+          type: QueryTypes.SELECT,
+        }
+      );
+      sortProduct.push({ ...productAnswer[0], id: products[i] });
+    }
+
+    return sortProduct;
+  }
+  async getAllProducts() {
+    const productAnswer = await Product.sequelize?.query(
+      "SELECT * FROM products as p INNER JOIN imgProducts ON p.id=imgProducts.productId",
+      {
+        type: QueryTypes.SELECT,
+      }
+    );
+    console.log(productAnswer);
+
     if (!productAnswer) throw new Error("product err");
     return productAnswer;
   }
 
   async getProductsBySubcat(subId: number) {
-    const productAnswer = await Product.findAll({
-      where: { subcategoryId: subId },
-      include: [
-        {
-          model: Img,
-          where: { productId: Sequelize.col("products.id") },
-        },
-      ],
-    });
+    const productAnswer = await Product.sequelize?.query(
+      `SELECT * FROM products as p INNER JOIN imgProducts ON p.id=imgProducts.productId WHERE p.subcategory=${subId}`,
+      {
+        type: QueryTypes.SELECT,
+      }
+    );
+    console.log(productAnswer);
+
+    if (!productAnswer) throw new Error("product err");
+    return productAnswer;
+  }
+
+  async getCategory(category: number) {
+    const productAnswer = await Product.sequelize?.query(
+      `SELECT * FROM products as p INNER JOIN imgProducts ON p.id=imgProducts.productId WHERE p.category=${category}`,
+      {
+        type: QueryTypes.SELECT,
+      }
+    );
+    console.log(productAnswer);
+
     if (!productAnswer) throw new Error("product err");
     return productAnswer;
   }
 
   async getProductsById(productId: number) {
-    const productAnswer = await Product.findOne({
-      where: { id: productId },
-      include: [
-        {
-          model: Img,
-          where: { productId: productId },
-        },
-      ],
-      raw: true,
-    });
+    const productAnswer = await Product.sequelize?.query(
+      `SELECT * FROM products as p INNER JOIN imgProducts ON p.id=imgProducts.productId WHERE p.id = ${productId}`,
+      {
+        type: QueryTypes.SELECT,
+      }
+    );
+    console.log(productAnswer);
+
     if (!productAnswer) throw new Error("product err");
     return productAnswer;
   }
 
-  async updateProduct(productId: number) {}
+  // async updateProduct(productId: number) {}
 }

@@ -56,6 +56,22 @@ export const User = connection.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    city: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    postNumber: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    address: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    birthday: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
   },
   {
     modelName: "User",
