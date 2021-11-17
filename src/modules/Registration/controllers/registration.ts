@@ -18,7 +18,7 @@ export const registration = async (req: Request, res: Response) => {
     const parseLeader = await parseLink(inviteLink);
 
     const param = {
-      leaderId: "",
+      leaderId: parseLeader,
       firstName: name,
       surname,
       lastName,
