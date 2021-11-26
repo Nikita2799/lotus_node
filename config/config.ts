@@ -9,6 +9,7 @@ const config = {
   security: {
     TOKEN: process.env.jwt,
     SECRET: process.env.secret_key,
+    API: process.env.api_key_code,
   },
   database: {
     host: process.env.DB_HOST,

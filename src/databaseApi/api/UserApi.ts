@@ -1,6 +1,9 @@
 import { Sequelize } from "sequelize";
 import { User } from "../model/User";
 import bcrypt from "bcryptjs";
+import { CodePhones } from "../model/CodePhones";
+import jwt from "jsonwebtoken";
+import config from "../../../config/config";
 
 export class UserApi {
   constructor(private readonly connection: Sequelize) {}
@@ -42,6 +45,43 @@ export class UserApi {
       attributes: ["firstName", "lastName", "surname", "email"],
     });
     return [result, leader];
+  }
+
+  public async findUserPhone(phone: string) {
+    const result = await User.findOne({
+      where: { phone: phone },
+      raw: false,
+      attributes: ["id"],
+    });
+    console.log(result);
+
+    if (result === null || !result) throw new Error("null");
+    const code = Math.floor(Math.random() * 10000) + 1;
+    const res = await CodePhones.create(
+      { userId: result.getDataValue("id"), code: code },
+      { raw: false }
+    );
+    console.log(res);
+
+    return code;
+  }
+
+  public async checkCode(code: string | number) {
+    const userId = await CodePhones.findOne({
+      where: { code: code },
+      attributes: ["userId"],
+    });
+    if (!userId || userId === null) throw new Error("null");
+
+    const token = jwt.sign(
+      { userId: userId.getDataValue("userId")! },
+      config.security.TOKEN!,
+      {
+        expiresIn: "5h",
+      }
+    );
+    await CodePhones.destroy({ where: { code: code } });
+    return token;
   }
 
   public async getMyPeople(email: string) {
