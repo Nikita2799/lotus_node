@@ -9,7 +9,7 @@ export const changePasswordForPassword = async (
 ) => {
   try {
     const id = req.user.userId;
-    const { oldPassword, newPassword } = req.params;
+    const { oldPassword, newPassword } = req.body;
 
     const user = await db.user.changePassword(id, oldPassword, newPassword);
 
