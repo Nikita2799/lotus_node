@@ -9,5 +9,6 @@ export interface IDataReg {
   allInvitePeople: string;
   inviteLink: string;
   balance: string | number;
+  overallBalance: string | number;
   sex: string;
 }

@@ -9,8 +9,17 @@ const db: DatabaseApi = new DatabaseApi();
 
 export const registration = async (req: Request, res: Response) => {
   try {
-    const { email, password, name, surname, lastName, inviteLink, sex, phone } =
-      <IDataReg>req.body;
+    const {
+      email,
+      password,
+      name,
+      surname,
+      lastName,
+      inviteLink,
+      sex,
+      phone,
+      overallBalance,
+    } = <IDataReg>req.body;
     console.log(req.body);
 
     const hashPassword = await bcryptjs.hash(password, 10);
@@ -28,6 +37,7 @@ export const registration = async (req: Request, res: Response) => {
       password: hashPassword,
       myInviteLink: myInviteLink,
       sex,
+      overallBalance: 0,
       balance: 0,
     };
 
