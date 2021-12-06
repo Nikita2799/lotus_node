@@ -1,7 +1,7 @@
 import mysql from "mysql";
 import config from "../../../config/config";
 import jwt from "jsonwebtoken";
-import { QueryTypes, Sequelize } from "sequelize/types";
+import { QueryTypes, Sequelize } from "sequelize";
 import { User } from "../model/User";
 import { IOrder } from "../../modules/Order/type";
 import { Order } from "../model/Order";
