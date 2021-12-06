@@ -9,9 +9,9 @@ export const changePasswordForPassword = async (
 ) => {
   try {
     const id = req.user.userId;
-    const { oldPassword, newPassword } = req.body;
+    const { newPassword, code } = req.body;
 
-    const user = await db.user.changePassword(id, oldPassword, newPassword);
+    const user = await db.user.changePasswordCode(code, newPassword);
 
     res.status(200).json();
   } catch (err) {

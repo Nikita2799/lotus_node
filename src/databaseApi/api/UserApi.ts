@@ -18,16 +18,39 @@ export class UserApi {
       attributes: ["password"],
       raw: false,
     });
-    const hashPassword = await bcrypt.hash(oldPassword, 10);
+    const hashPassword = await bcrypt.hash(newPassword, 10);
     const isMatch = await bcrypt.compare(
-      hashPassword,
+      oldPassword,
       result?.getDataValue("password")
     );
 
     if (!isMatch) throw new Error("incorrect pass");
 
-    const hashNewPassword = await bcrypt.hash(newPassword, 10);
-    await User.update({ password: hashNewPassword }, { where: { id: id } });
+    //const hashNewPassword = await bcrypt.hash(newPassword, 10);
+    await User.update({ password: hashPassword }, { where: { id: id } });
+
+    return result;
+  }
+
+  public async changePasswordCode(
+    code: any,
+
+    newPassword: string
+  ) {
+    const result = await CodePhones.findOne({
+      where: { code: code },
+      attributes: ["userId"],
+      raw: false,
+    });
+
+    if (!result) throw new Error("null user");
+    const hashPassword = await bcrypt.hash(newPassword, 10);
+
+    //const hashNewPassword = await bcrypt.hash(newPassword, 10);
+    await User.update(
+      { password: hashPassword },
+      { where: { id: result.getDataValue("userId") } }
+    );
 
     return result;
   }

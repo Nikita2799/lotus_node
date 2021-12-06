@@ -1,7 +1,7 @@
 import mysql from "mysql";
 import config from "../../../config/config";
 import jwt from "jsonwebtoken";
-import { Sequelize } from "sequelize/types";
+import { QueryTypes, Sequelize } from "sequelize/types";
 import { User } from "../model/User";
 import { IOrder } from "../../modules/Order/type";
 import { Order } from "../model/Order";
@@ -32,5 +32,18 @@ export class OrderApi {
 
     if (result === null) throw new Error("null");
     return "success";
+  }
+
+  public async getAll() {
+    const orders = await Order.findAll();
+    return orders;
+  }
+
+  public async getProductOrder(orderId: any) {
+    const products = await ProductOrder.sequelize?.query(
+      `SELECT * FROM productOrders as po INNER JOIN products as p IN po.productId=p.id WHERE po.orderId = ${orderId} `,
+      { type: QueryTypes.SELECT }
+    );
+    return products;
   }
 }
