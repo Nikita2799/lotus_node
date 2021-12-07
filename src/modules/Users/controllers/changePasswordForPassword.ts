@@ -9,11 +9,11 @@ export const changePasswordForPassword = async (
 ) => {
   try {
     const id = req.user.userId;
-    const { newPassword, code } = req.body;
+    const { newPassword, oldPassword } = req.body;
 
-    const user = await db.user.changePasswordCode(code, newPassword);
+    const user = await db.user.changePassword(id, oldPassword, newPassword);
 
-    res.status(200).json();
+    res.status(200).json("ok");
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "server error" });
