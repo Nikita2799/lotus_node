@@ -7,6 +7,7 @@ import { getCount } from "./controllers/getCount";
 import { getInvite } from "./controllers/getInvite";
 import { getStructureUser } from "./controllers/getStructureUser";
 import { getUserByToken } from "./controllers/getUserByToken";
+import { sendSms } from "./controllers/sendSms";
 import { updateCodePass } from "./controllers/updateCodePass";
 import { updateUserAddress } from "./controllers/updateUserAddressDate";
 
@@ -18,6 +19,8 @@ export const UsersRouter = (router: any) => {
   router.post("/update_pass_code", changePassForPhone);
   router.post("/confirm_code", confirmPhoneCode);
   router.post("/login_admin", login_admin);
+  router.post("/send_sms", middelwareToken, sendSms);
+
   router.get("/get_user_by_token", middelwareToken, getUserByToken);
   router.get("/ ", middelwareToken, getInvite);
 };
