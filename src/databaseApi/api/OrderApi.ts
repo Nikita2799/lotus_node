@@ -16,6 +16,7 @@ export class OrderApi {
       typePost: order.typePost,
       fullName: order.fullName,
       city: order.city,
+      orderId: order.orderId,
       numberPost: order.numberPost,
       phone: order.phone,
       typePay: order.typePay,
