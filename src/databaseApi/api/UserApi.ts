@@ -32,11 +32,7 @@ export class UserApi {
     return result;
   }
 
-  public async changePasswordCode(
-    code: any,
-
-    newPassword: string
-  ) {
+  public async changePasswordCode(code: any, newPassword: string) {
     const result = await CodePhones.findOne({
       where: { code: code },
       attributes: ["userId"],
@@ -45,7 +41,7 @@ export class UserApi {
 
     if (!result) throw new Error("null user");
     const hashPassword = await bcrypt.hash(newPassword, 10);
-
+    await CodePhones.destroy({ where: { code: code } });
     //const hashNewPassword = await bcrypt.hash(newPassword, 10);
     await User.update(
       { password: hashPassword },
@@ -79,7 +75,9 @@ export class UserApi {
     console.log(result);
 
     if (result === null || !result) throw new Error("null");
+
     const code = Math.floor(Math.random() * 10000) + 1;
+
     const res = await CodePhones.create(
       { userId: result.getDataValue("id"), code: code },
       { raw: false }
@@ -103,7 +101,7 @@ export class UserApi {
         expiresIn: "5h",
       }
     );
-    await CodePhones.destroy({ where: { code: code } });
+
     return token;
   }
 

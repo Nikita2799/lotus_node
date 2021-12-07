@@ -10,6 +10,6 @@ export interface IOrder {
 }
 
 interface productList {
-  idProduct: string | number;
-  count: string | number;
+  id: string | number;
+  amount: string | number;
 }

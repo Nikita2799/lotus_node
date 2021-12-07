@@ -10,6 +10,11 @@ export const Order = connection.define(
       primaryKey: true,
       allowNull: false,
     },
+    orderId: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
     typePost: {
       type: DataTypes.INTEGER,
       unique: false,

@@ -25,8 +25,8 @@ export class OrderApi {
     for (let i = 0; i < order.productList.length; i++) {
       await ProductOrder.create({
         orderId: result.getDataValue("id"),
-        productId: order.productList[i].idProduct,
-        count: order.productList[i].count,
+        productId: order.productList[i].id,
+        count: order.productList[i].amount,
       });
     }
 
