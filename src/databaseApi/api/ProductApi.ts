@@ -27,7 +27,7 @@ export class ProductApi {
     let sortProduct = [];
     for (let i = 0; i < products.length; i++) {
       const productAnswer: any = await Product.sequelize?.query(
-        `SELECT price,discount,name FROM products as p INNER JOIN imgProducts ON p.id=imgProducts.productId WHERE p.id = ${products[i]}`,
+        `SELECT price,discount,name,src FROM products as p INNER JOIN imgProducts ON p.id=imgProducts.productId WHERE p.id = ${products[i]}`,
         {
           type: QueryTypes.SELECT,
         }
