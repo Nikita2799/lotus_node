@@ -1,7 +1,7 @@
 import mysql from "mysql";
 import config from "../../../config/config";
 import jwt from "jsonwebtoken";
-import { Sequelize } from "sequelize/types";
+import { Sequelize } from "sequelize";
 import { User } from "../model/User";
 
 export class RegistrationApi {
