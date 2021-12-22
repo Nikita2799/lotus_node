@@ -61,7 +61,14 @@ export class UserApi {
     if (result === null) throw new Error("null");
     const leader = await User.findOne({
       where: { email: result.getDataValue("leaderId") },
-      attributes: ["firstName", "lastName", "surname", "email"],
+      attributes: [
+        "firstName",
+        "lastName",
+        "surname",
+        "email",
+        "overallBalance",
+        "openLine",
+      ],
     });
     return [result, leader];
   }
