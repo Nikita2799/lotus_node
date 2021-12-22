@@ -64,6 +64,10 @@ export const User = connection.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
+    openLine: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
     postNumber: {
       type: DataTypes.INTEGER,
       allowNull: true,
