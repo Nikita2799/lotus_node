@@ -18,6 +18,10 @@ export const ProductOrder = connection.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    currentPrice: {
+      type: DataTypes.DOUBLE,
+      allowNull: true,
+    },
     count: {
       type: DataTypes.INTEGER,
       allowNull: false,

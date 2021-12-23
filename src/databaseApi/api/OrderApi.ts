@@ -27,6 +27,7 @@ export class OrderApi {
       await ProductOrder.create({
         orderId: result.getDataValue("id"),
         productId: order.productList[i].id,
+        currentPrice: order.productList[i].price,
         count: order.productList[i].amount,
       });
     }

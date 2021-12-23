@@ -13,4 +13,5 @@ export interface IOrder {
 interface productList {
   id: string | number;
   amount: string | number;
+  price: number | null | string;
 }
