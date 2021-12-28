@@ -29,6 +29,8 @@ export class OrderApi {
         productId: order.productList[i].id,
         currentPrice: order.productList[i].price,
         count: order.productList[i].amount,
+        sale: order.productList[i].sale,
+        productSale: order.productList[i].saleProduct,
       });
     }
 

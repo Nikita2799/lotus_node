@@ -14,4 +14,6 @@ interface productList {
   id: string | number;
   amount: string | number;
   price: number | null | string;
+  sale: boolean | null;
+  saleProduct: boolean | null;
 }
