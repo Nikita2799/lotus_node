@@ -41,6 +41,20 @@ export class OrderApi {
     return orders;
   }
 
+  public async getHistory(userId: any) {
+    const orders = await Order.findAll({ where: { userId: userId } });
+
+    return orders;
+  }
+
+  public async getHistoryProductOrder(orderId: any) {
+    const products = await ProductOrder.sequelize?.query(
+      `SELECT * FROM productOrders as po INNER JOIN products as p IN po.productId=p.id WHERE po.orderId = ${orderId} `,
+      { type: QueryTypes.SELECT }
+    );
+    return products;
+  }
+
   public async getProductOrder(orderId: any) {
     const products = await ProductOrder.sequelize?.query(
       `SELECT * FROM productOrders as po INNER JOIN products as p IN po.productId=p.id WHERE po.orderId = ${orderId} `,
