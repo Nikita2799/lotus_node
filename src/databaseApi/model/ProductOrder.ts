@@ -22,9 +22,17 @@ export const ProductOrder = connection.define(
       type: DataTypes.DOUBLE,
       allowNull: true,
     },
+    sale: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    productSale: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
     count: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
 
     createdAt: { type: DataTypes.DATE },

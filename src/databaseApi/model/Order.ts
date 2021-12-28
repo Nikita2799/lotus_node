@@ -15,6 +15,10 @@ export const Order = connection.define(
       allowNull: false,
       unique: true,
     },
+    userId: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     typePost: {
       type: DataTypes.INTEGER,
       unique: false,
