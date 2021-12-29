@@ -7,6 +7,7 @@ const db: DatabaseApi = new DatabaseApi();
 export const postOrder = async (req: Request, res: Response) => {
   try {
     const order = <IOrder>req.body;
+    console.log(req.body, "IOrder");
 
     const category = await db.order.addOrder(order);
 
