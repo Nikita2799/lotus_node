@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { middelwareToken } from "../../middelwareToken/middelware";
 import { getAllOrder } from "./controllers/getAllOrder";
 import { getOrderHistory } from "./controllers/getOrderHistory";
 import { getOrderProducts } from "./controllers/getOrderProducts";
@@ -9,6 +10,6 @@ export const OrderRouter = (router: Router) => {
   router.post("/order/post", postOrder);
   router.get("/order/get_all", getAllOrder);
   router.get("/order/get_order_product/:orderId", getOrderProducts);
-  router.get("/order/get_history/:userId", getOrderHistory);
+  router.get("/order/get_history", middelwareToken, getOrderHistory);
   router.get("/order/get_history_product/:orderId", getOrdersProductHistory);
 };

@@ -17,7 +17,7 @@ export const Order = connection.define(
     },
     userId: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     typePost: {
       type: DataTypes.INTEGER,

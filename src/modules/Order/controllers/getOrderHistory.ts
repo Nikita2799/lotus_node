@@ -6,9 +6,9 @@ const db: DatabaseApi = new DatabaseApi();
 
 export const getOrderHistory = async (req: Request, res: Response) => {
   try {
-    const { userId } = req.params;
+    const id = req.user.userId;
 
-    const orders = await db.order.getHistory(userId);
+    const orders = await db.order.getHistory(id);
 
     res.status(200).json(orders);
   } catch (err) {
