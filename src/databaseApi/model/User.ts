@@ -44,6 +44,10 @@ export const User = connection.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    refBonus: {
+      type: DataTypes.DOUBLE,
+      allowNull: true,
+    },
     passportData: {
       type: DataTypes.STRING,
       allowNull: true,
