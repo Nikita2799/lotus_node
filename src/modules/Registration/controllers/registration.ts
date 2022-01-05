@@ -37,6 +37,11 @@ export const registration = async (req: Request, res: Response) => {
       password: hashPassword,
       myInviteLink: myInviteLink,
       sex,
+      bonusBalance: 0,
+      refBonus: 0,
+      openLine: 0,
+
+      countMyPeople: 0,
       overallBalance: 0,
       balance: 0,
     };
