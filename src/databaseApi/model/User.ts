@@ -68,6 +68,10 @@ export const User = connection.define(
       type: DataTypes.INTEGER,
       allowNull: true,
     },
+    sex: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     overallBalance: {
       type: DataTypes.DOUBLE,
       allowNull: true,
