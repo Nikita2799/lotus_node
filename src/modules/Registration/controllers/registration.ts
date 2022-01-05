@@ -36,11 +36,10 @@ export const registration = async (req: Request, res: Response) => {
       passportData: " ",
       password: hashPassword,
       myInviteLink: myInviteLink,
-      sex,
+      sex: sex,
       bonusBalance: 0,
       refBonus: 0,
       openLine: 0,
-
       countMyPeople: 0,
       overallBalance: 0,
       balance: 0,
