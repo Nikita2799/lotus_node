@@ -40,6 +40,10 @@ export const User = connection.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    allInvitePeople: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     myInviteLink: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -52,32 +56,20 @@ export const User = connection.define(
       type: DataTypes.DOUBLE,
       allowNull: false,
     },
-    overallBalance: {
+    bonusBalance: {
       type: DataTypes.DOUBLE,
       allowNull: false,
     },
-    sex: {
-      type: DataTypes.STRING,
+    countMyPeople: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-    },
-    city: {
-      type: DataTypes.STRING,
-      allowNull: true,
     },
     openLine: {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-    postNumber: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-    address: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    birthday: {
-      type: DataTypes.DATE,
+    overallBalance: {
+      type: DataTypes.DOUBLE,
       allowNull: true,
     },
   },
